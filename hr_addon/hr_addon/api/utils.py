@@ -36,7 +36,7 @@ def get_employee_default_work_hour(employee,adate):
     """%(employee,adate), as_dict=1
     )
     if (target_work_hours is None  or target_work_hours == []):
-        msg = f'<div>Please create "Weekly Working Hours" for the selected Employee: {employee} - DayName: {adate} first. </div>'    
+        msg = f'<div>Please create "Weekly Working Hours" for the selected Employee: {employee} - DayName: {str(adate)} first. </div>'    
         frappe.throw(_(msg))
 
     return target_work_hours
