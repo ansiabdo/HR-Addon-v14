@@ -28,13 +28,13 @@ def get_employee_default_work_hour(employee,adate):
     #validate current or active FY year WHERE --
     # AND YEAR(valid_from) = CAST(%(year)s as INT) AND YEAR(valid_to) = CAST(%(year)s as INT)
     # AND YEAR(w.valid_from) = CAST(('2022-01-01') as INT) AND YEAR(w.valid_to) = CAST(('2022-12-30') as INT);
-    target_work_hours= frappe.db.sql(
-        """ 
+    sqlcmd =        """ 
     SELECT w.name,w.employee,w.valid_from,w.valid_to,d.day,d.hours  FROM `tabWeekly Working Hours` w  
     LEFT JOIN `tabDaily Hours Detail` d ON w.name = d.parent 
     WHERE w.employee='%s' AND d.day = DAYNAME('%s')
     """%(employee,adate), as_dict=1
-    )
+
+    target_work_hours= frappe.db.sql(sqlcmd)
     if (target_work_hours is None  or target_work_hours == []):
         msg = f'<div>Please create "Weekly Working Hours" for the selected Employee: {employee} first. </div>'    
         frappe.throw(_(msg))
