@@ -36,7 +36,7 @@ def get_employee_default_work_hour(employee,adate):
 
     target_work_hours= frappe.db.sql(sqlcmd)
     if (target_work_hours is None  or target_work_hours == []):
-        msg = f'<div>Please create "Weekly Working Hours" for the selected Employee: {employee} first. </div>'    
+        msg = f'<div>Please create "Weekly Working Hours" for the selected Employee: {employee} first. <br> {sqlcmd} </div>'    
         frappe.throw(_(msg))
 
     return target_work_hours
