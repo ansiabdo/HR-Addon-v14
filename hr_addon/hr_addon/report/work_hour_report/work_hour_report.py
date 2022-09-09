@@ -23,6 +23,7 @@ def execute(filters=None):
 	# {'fieldname':'target_hours','label':'Target Hours','width':80},
 	columns = [		
 		{'fieldname':'log_date','label':'Date','width':110},		
+		{'fieldname':'employee','label':'Employee',  "fieldtype": "Link", "options": "Employee", 'width':200,},		
 		{'fieldname':'name','label':'Work Day',  "fieldtype": "Link", "options": "Workday", 'width':200,},		
 		{'fieldname':'status','label':'Status', "width": 80},
 		{'fieldname':'total_work_seconds','label':_('Work Hours'), "width": 110, },
